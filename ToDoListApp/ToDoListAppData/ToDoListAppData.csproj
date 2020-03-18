@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200313041621_addusermodel.cs" />
+    <Compile Remove="Migrations\20200313041621_addusermodel.Designer.cs" />
+    <Compile Remove="Migrations\20200313070257_addtodolistmodel.cs" />
+    <Compile Remove="Migrations\20200313070257_addtodolistmodel.Designer.cs" />
+    <Compile Remove="Migrations\20200315033413_addcompletedateontodolistmodel.cs" />
+    <Compile Remove="Migrations\20200315033413_addcompletedateontodolistmodel.Designer.cs" />
+    <Compile Remove="Migrations\20200316083329_changeusermodeltoidentityuser.cs" />
+    <Compile Remove="Migrations\20200316083329_changeusermodeltoidentityuser.Designer.cs" />
+    <Compile Remove="Migrations\20200316165157_changeusermodeltoidentityuser.cs" />
+    <Compile Remove="Migrations\20200316165157_changeusermodeltoidentityuser.Designer.cs" />
+    <Compile Remove="Migrations\20200316170012_addtodolistmodel.cs" />
+    <Compile Remove="Migrations\20200316170012_addtodolistmodel.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

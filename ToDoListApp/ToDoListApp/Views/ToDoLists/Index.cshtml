@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Controller"] = "ToDoLists";
+    ViewData["SubTitle"] = "To Do List";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><a href="" onclick="tdlClearScreen()" data-toggle="modal" data-target="#tdlModal">Create New</a></h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="tdlTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th>To Do List Name</th>
+                            <th width="15%">Date</th>
+                            <th width="15%">Completed Date</th>
+                            <th width="10%">Status</th>
+                            <th width="10%">Status</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tdl in ViewBag.ToDoLists)
+                        {
+                            <tr @(tdl.Status == true ? "style=background:#959595;color:white" : "")>
+                                <td></td>
+                                <td>@tdl.Name</td>
+                                <td>@tdl.CreateDate.ToString("dd MMMM yyyy")</td>
+                                <td>@(tdl.CompletedDate != null ? tdl.CompletedDate.ToString("dd MMMM yyyy") : "On Progress")</td>
+                                <td>@(tdl.Status == false ? "Active" : "Completed")</td>
+                                <td>@(tdl.Status == false ? "Active" : "Completed")</td>
+                                @if (tdl.Status == false)
+                                {
+                                    <td>
+                                        <a style="color:#ffc107;" onmouseover="this.style.cursor='pointer'" onclick=tdlGetById("@tdl.Id");><i class="fa fa-edit fa-lg"></i></a>&nbsp
+                                        <a style="color:#dc3545;" onmouseover="this.style.cursor='pointer'" onclick=tdlDelete("@tdl.Id");><i class="fa fa-trash fa-lg"></i></a>&nbsp
+                                        <a style="color:#28a745;" onmouseover="this.style.cursor='pointer'" onclick=tdlUpdateStatus("@tdl.Id");><i class="fa fa-check-circle fa-lg"></i></a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>No Action</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="modal fade" id="tdlModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">To Do List Form</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" class="form-control" id="tdlIdText" />
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <input type="text" id="tdlNameText" class="form-control" placeholder="Name">
+                            </div>
+                            <input type="hidden" id="tdlUserText" class="form-control" value="2">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="tdlSave" onclick="tdlValidation();">Submit</button>
+                            <button type="button" class="btn btn-primary" id="tdlUpdate" onclick="tdlValidation();">Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@section Scripts{
+    <!-- jQuery -->
+    <script src="~/js/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/js/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/js/plugins/moment/moment.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/js/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/js/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/js/tdljs/tdl.js"></script>
+    <!-- Select2 -->
+    <script src="~/js/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- AdminLTE App -->
+    <script src="~/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/js/demo.js"></script>
+}
+
