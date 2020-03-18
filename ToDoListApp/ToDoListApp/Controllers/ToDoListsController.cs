@@ -23,15 +23,23 @@ namespace ToDoListApp.Controllers
         // GET: ToDoLists
         public ActionResult Index()
         {
-            ViewBag.ToDoLists = ToDoLists();
-            return View();
+            if (HttpContext.Session.GetString("IdUser") != null)
+            {
+                ViewBag.ToDoLists = ToDoLists();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("","Users");
+            }
         }
 
         // GET : ToDoLists/Lists
         public IList<ToDoListVM> ToDoLists()
         {
+            var iduser = HttpContext.Session.GetString("IdUser");
             IList<ToDoListVM> toDoLists = null;
-            var responseTask = httpClient.GetAsync("ToDoLists");
+            var responseTask = httpClient.GetAsync("ToDoLists/Users/"+iduser);
             responseTask.Wait();
             var result = responseTask.Result;
             if (result.IsSuccessStatusCode)

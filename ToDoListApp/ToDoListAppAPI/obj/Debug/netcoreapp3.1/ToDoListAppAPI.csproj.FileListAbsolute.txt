@@ -8,7 +8,10 @@ B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\ToDoListAppAPI.run
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\ToDoListAppAPI.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\ToDoListAppAPI.pdb
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Dapper.dll
+B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -29,6 +32,8 @@ B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensio
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
@@ -124,8 +129,3 @@ B:\Project\ToDoListApp\ToDoListAppAPI\obj\Debug\netcoreapp3.1\ToDoListAppAPI.Raz
 B:\Project\ToDoListApp\ToDoListAppAPI\obj\Debug\netcoreapp3.1\ToDoListAppAPI.csproj.CopyComplete
 B:\Project\ToDoListApp\ToDoListAppAPI\obj\Debug\netcoreapp3.1\ToDoListAppAPI.dll
 B:\Project\ToDoListApp\ToDoListAppAPI\obj\Debug\netcoreapp3.1\ToDoListAppAPI.pdb
-B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
-B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
-B:\Project\ToDoListApp\ToDoListAppAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll

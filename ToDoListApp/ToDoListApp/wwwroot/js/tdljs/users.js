@@ -3,7 +3,7 @@ function uLogin() {
     debugger;
     var login = new Object();
     login.UserName = $("#username").val();
-    login.Password = $("#password").val();
+    login.PasswordHash = $("#password").val();
     if ($("#username").val().trim() == "") {
         $("#login-alert").removeAttr('hidden');
         $("#login-alert").attr("class", "alert alert-danger alert-dismissible");
@@ -21,17 +21,17 @@ function uLogin() {
             "url": "/Users/Login",
             "type": "POST",
             "dataType": "json",
-            "data": { UserName: login.UserName, Password: login.Password }
+            "data": { UserName: login.UserName, PasswordHash: login.PasswordHash }
         }).then((result) => {
             debugger;
             if (result.statusCode == 200) {
-                window.location.href = '/Questions/'
+                window.location.href = '/ToDoLists/'
             }
             else {
                 $("#login-alert").removeAttr('hidden');
                 $("#login-alert").attr("class", "alert alert-danger alert-dismissible");
                 $("#login-alert").html('<button type="button" class="close" data-dismiss="alert" aria-hidden="true"' +
-                    'onclick=uCount();>&times;</button>Username / password invalid');
+                    '>&times;</button>Username / password invalid');
             }
         })
     }

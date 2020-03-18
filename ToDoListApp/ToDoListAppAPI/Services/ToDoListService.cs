@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ToDoListAppAPI.Services.Interfaces;
-using ToDoListAppData.Model;
 using ToDoListAppData.Repositories.Interfaces;
 using ToDoListAppData.ViewModel;
 
@@ -73,6 +69,16 @@ namespace ToDoListAppAPI.Services
         public ToDoListVM Get(int Id)
         {
             var todolist = _toDoListRepository.Get(Id);
+            if (todolist != null)
+            {
+                return todolist;
+            }
+            return null;
+        }
+
+        public IEnumerable<ToDoListVM> Get(string userId)
+        {
+            var todolist = _toDoListRepository.Get(userId);
             if (todolist != null)
             {
                 return todolist;

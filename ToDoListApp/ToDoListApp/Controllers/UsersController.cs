@@ -26,6 +26,23 @@ namespace ToDoListApp.Controllers
             return View();
         }
 
+        [Route("Logout")]
+        public ActionResult Logout()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            if (username == null)
+            {
+                return RedirectToAction("", "Users");
+            }
+            else
+            {
+                HttpContext.Session.Remove("IdUser");
+                HttpContext.Session.Remove("Username");
+                HttpContext.Session.Remove("Name");
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
         // POST: Login
         public ActionResult Login(UserVM userVM)
         {
@@ -33,15 +50,15 @@ namespace ToDoListApp.Controllers
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var affectedRow = httpClient.PostAsync("Login", byteContent).Result;
+            var affectedRow = httpClient.PostAsync("Users/Login", byteContent).Result;
             if (affectedRow.IsSuccessStatusCode)
             {
                 var readTask = affectedRow.Content.ReadAsStringAsync().Result.Replace("\"", "").Split("...");
                 //var token = "Bearer " + readTask[0];
-                var username = readTask[1];
-                var iduser = readTask[2];
-                var name = readTask[3];
-                //HttpContext.Session.SetString("Token", token);
+                var username = readTask[0];
+                var iduser = readTask[1];
+                var name = readTask[2];
+                HttpContext.Session.SetString("IdUser", iduser);
                 var cek = httpClient.GetAsync("Get/" + iduser).Result;
                 var read = cek.Content.ReadAsStringAsync().Result;
                 //userVM.Id = Convert.ToInt16(iduser);

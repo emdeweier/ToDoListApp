@@ -78,6 +78,7 @@ namespace ToDoListAppData.Repositories
             {
                 var procGet = "SP_GetToDoLists";
                 param.Add("@paramId", null);
+                param.Add("@paramUserId", null);
                 var get = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
                 return get;
             }
@@ -89,7 +90,20 @@ namespace ToDoListAppData.Repositories
             {
                 var procGet = "SP_GetToDoLists";
                 param.Add("@paramId", Id);
+                param.Add("@paramUserId", null);
                 var getbyid = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+                return getbyid;
+            }
+        }
+
+        public IEnumerable<ToDoListVM> Get(string userId)
+        {
+            using (var conn = new SqlConnection(_connectionStrings.Value))
+            {
+                var procGet = "SP_GetToDoLists";
+                param.Add("@paramId", null);
+                param.Add("@paramUserId", userId);
+                var getbyid = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
                 return getbyid;
             }
         }

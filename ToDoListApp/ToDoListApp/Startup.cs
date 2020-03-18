@@ -36,6 +36,10 @@ namespace ToDoListApp
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
+
             //services.AddIdentity<User, IdentityRole>(options =>
             //{
             //    options.Lockout.AllowedForNewUsers = true;
@@ -71,6 +75,8 @@ namespace ToDoListApp
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

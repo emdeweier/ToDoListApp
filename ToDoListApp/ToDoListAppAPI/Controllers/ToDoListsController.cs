@@ -18,11 +18,24 @@ namespace ToDoListAppAPI.Controllers
         {
             _toDoListService = toDoListService;
         }
+
         // GET: api/ToDoLists
         [HttpGet]
         public IActionResult Get()
         {
             var getall = _toDoListService.Get();
+            if (getall == null)
+            {
+                return NotFound();
+            }
+            return Ok(getall);
+        }
+
+        // GET: api/ToDoLists
+        [HttpGet("Users/{iduser}")]
+        public IActionResult Get(string iduser)
+        {
+            var getall = _toDoListService.Get(iduser);
             if (getall == null)
             {
                 return NotFound();

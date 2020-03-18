@@ -161,7 +161,7 @@ namespace ToDoListAppAPI.Controllers
             else
             {
                 var message = "Username or Password is Invalid";
-                return BadRequest(user.AccessFailedCount + "..." + message);
+                return BadRequest(message);
             }
             //return NotFound();
         }
