@@ -32,9 +32,9 @@ namespace ToDoListAppData.Repositories
             }
         }
 
-        public bool Delete(int Id)
+        public bool Delete(int Id, string userId)
         {
-            var getbyid = Get(Id);
+            var getbyid = Get(Id, userId);
             if(getbyid == null)
             {
                 return false;
@@ -45,13 +45,13 @@ namespace ToDoListAppData.Repositories
                 {
                     var procDelete = "SP_UpdateToDoList";
                     param.Add("@paramId", Id);
-                    param.Add("@paramName", null);
-                    param.Add("@paramStatus", null);
-                    param.Add("@paramUpdateDate", null);
                     param.Add("@paramCompletedDate", null);
+                    param.Add("@paramUserId", userId);
                     param.Add("@paramDeleteDate", DateTimeOffset.Now.LocalDateTime);
-                    var delete = conn.Execute(procDelete, param, commandType: System.Data.CommandType.StoredProcedure);
-                    return Convert.ToBoolean(delete);
+                    param.Add("@paramName", null);
+                    param.Add("@paramUpdateDate", null);
+                    var delete = Convert.ToBoolean(conn.Execute(procDelete, param, commandType: System.Data.CommandType.StoredProcedure));
+                    return delete;
                 }
             }
         }
@@ -62,11 +62,11 @@ namespace ToDoListAppData.Repositories
             {
                 var procUpdate = "SP_UpdateToDoList";
                 param.Add("@paramId", Id);
-                param.Add("@paramName", toDoListVM.Name);
-                param.Add("@paramStatus", null);
-                param.Add("@paramUpdateDate", DateTimeOffset.Now.LocalDateTime);
                 param.Add("@paramCompletedDate", null);
+                param.Add("@paramUserId", toDoListVM.userId);
                 param.Add("@paramDeleteDate", null);
+                param.Add("@paramName", toDoListVM.Name);
+                param.Add("@paramUpdateDate", DateTimeOffset.Now.LocalDateTime);
                 var edit = conn.Execute(procUpdate, param, commandType: System.Data.CommandType.StoredProcedure);
                 return edit;
             }
@@ -84,13 +84,13 @@ namespace ToDoListAppData.Repositories
             }
         }
 
-        public ToDoListVM Get(int Id)
+        public ToDoListVM Get(int Id, string userId)
         {
             using (var conn = new SqlConnection(_connectionStrings.Value))
             {
                 var procGet = "SP_GetToDoLists";
                 param.Add("@paramId", Id);
-                param.Add("@paramUserId", null);
+                param.Add("@paramUserId", userId);
                 var getbyid = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
                 return getbyid;
             }
@@ -108,9 +108,9 @@ namespace ToDoListAppData.Repositories
             }
         }
 
-        public bool UpdateStatus(int Id, ToDoListVM toDoListVM)
+        public bool UpdateStatus(int Id, string userId)
         {
-            var getbyid = Get(Id);
+            var getbyid = Get(Id, userId);
             if (getbyid == null)
             {
                 return false;
@@ -119,15 +119,15 @@ namespace ToDoListAppData.Repositories
             {
                 using (var conn = new SqlConnection(_connectionStrings.Value))
                 {
-                    var procDelete = "SP_UpdateToDoList";
+                    var procUpdateStatus = "SP_UpdateToDoList";
                     param.Add("@paramId", Id);
-                    param.Add("@paramName", null);
-                    param.Add("@paramStatus", toDoListVM.Status);
-                    param.Add("@paramUpdateDate", null);
                     param.Add("@paramCompletedDate", DateTimeOffset.Now.LocalDateTime);
+                    param.Add("@paramUserId", userId);
                     param.Add("@paramDeleteDate", null);
-                    var delete = conn.Execute(procDelete, param, commandType: System.Data.CommandType.StoredProcedure);
-                    return Convert.ToBoolean(delete);
+                    param.Add("@paramName", null);
+                    param.Add("@paramUpdateDate", null);
+                    var updatestatus = conn.Execute(procUpdateStatus, param, commandType: System.Data.CommandType.StoredProcedure);
+                    return Convert.ToBoolean(updatestatus);
                 }
             }
         }

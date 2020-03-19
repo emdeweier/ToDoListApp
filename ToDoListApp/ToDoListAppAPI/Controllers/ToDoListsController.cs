@@ -44,10 +44,10 @@ namespace ToDoListAppAPI.Controllers
         }
 
         // GET: api/ToDoLists/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{id}/{userId}")]
+        public IActionResult Get(int id, string userId)
         {
-            var getbyid = _toDoListService.Get(id);
+            var getbyid = _toDoListService.Get(id, userId);
             if (getbyid == null)
             {
                 return NotFound();
@@ -80,10 +80,10 @@ namespace ToDoListAppAPI.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete("{id}/{userid}")]
+        public ActionResult Delete(int id, string userId)
         {
-            var delete = _toDoListService.Delete(id);
+            var delete = _toDoListService.Delete(id, userId);
             if (delete == true)
             {
                 return Ok(delete);
@@ -91,10 +91,10 @@ namespace ToDoListAppAPI.Controllers
             return BadRequest();
         }
 
-        [HttpPut("Status/{id}")]
-        public ActionResult UpdateStatus(int id, ToDoListVM toDoListVM)
+        [HttpPut("Status/{id}/{userid}")]
+        public ActionResult UpdateStatus(int id, string userId)
         {
-            var updatestatus = _toDoListService.UpdateStatus(id, toDoListVM);
+            var updatestatus = _toDoListService.UpdateStatus(id, userId);
             if (updatestatus == true)
             {
                 return Ok(updatestatus);

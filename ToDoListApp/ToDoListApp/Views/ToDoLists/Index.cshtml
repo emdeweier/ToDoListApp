@@ -39,9 +39,9 @@
                                 @if (tdl.Status == false)
                                 {
                                     <td>
-                                        <a style="color:#ffc107;" onmouseover="this.style.cursor='pointer'" onclick=tdlGetById("@tdl.Id");><i class="fa fa-edit fa-lg"></i></a>&nbsp
-                                        <a style="color:#dc3545;" onmouseover="this.style.cursor='pointer'" onclick=tdlDelete("@tdl.Id");><i class="fa fa-trash fa-lg"></i></a>&nbsp
-                                        <a style="color:#28a745;" onmouseover="this.style.cursor='pointer'" onclick=tdlUpdateStatus("@tdl.Id");><i class="fa fa-check-circle fa-lg"></i></a>
+                                        <a style="color:#ffc107;" onmouseover="this.style.cursor='pointer'" onclick=tdlGetById("@tdl.Id","@tdl.userId");><i class="fa fa-edit fa-lg"></i></a>&nbsp
+                                        <a style="color:#dc3545;" onmouseover="this.style.cursor='pointer'" onclick=tdlDelete("@tdl.Id","@tdl.userId");><i class="fa fa-trash fa-lg"></i></a>&nbsp
+                                        <a style="color:#28a745;" onmouseover="this.style.cursor='pointer'" onclick=tdlUpdateStatus("@tdl.Id","@tdl.userId");><i class="fa fa-check-circle fa-lg"></i></a>
                                     </td>
                                 }
                                 else

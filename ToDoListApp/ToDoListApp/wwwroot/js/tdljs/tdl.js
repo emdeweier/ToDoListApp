@@ -110,13 +110,13 @@ function tdlSave() {
 }
 
 // Get To Do List Id
-function tdlGetById(id) {
+function tdlGetById(id, userid) {
     debugger
     $.ajax({
         "url": "/ToDoLists/Get/" + id,
         "type": "GET",
         "dataType": "json",
-        "data": { Id: id }
+        "data": { Id: id, userId: userid }
     }).then((result) => {
         debugger
         if (result.data != null) {
@@ -170,7 +170,7 @@ function tdlEdit(id) {
 }
 
 // Delete To Do List
-function tdlDelete(id) {
+function tdlDelete(id, userid) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -185,7 +185,7 @@ function tdlDelete(id) {
             $.ajax({
                 "url": "/ToDoLists/Delete/",
                 "dataType": "json",
-                "data": { Id: id }
+                "data": { Id: id, userId: userid }
             }).then((hasil) => {
                 debugger
                 if (hasil.data[0] != 0) {
@@ -210,7 +210,7 @@ function tdlDelete(id) {
 }
 
 // Update Status To Do List
-function tdlUpdateStatus(id) {
+function tdlUpdateStatus(id, userid) {
     var todolist = new Object();
     debugger
     todolist.Id = id;
@@ -218,7 +218,7 @@ function tdlUpdateStatus(id) {
         "url": "/ToDoLists/UpdateStatus/",
         "type": "POST",
         "dataType": "json",
-        "data": { Id: todolist.Id, Status: true }
+        "data": { Id: todolist.Id, userId: userid }
     }).then((result) => {
         if (result.statusCode == 200) {
             $("#tdlModal").modal("hide");

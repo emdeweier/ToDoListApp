@@ -29,9 +29,9 @@ namespace ToDoListAppAPI.Services
             }
         }
 
-        public bool Delete(int Id)
+        public bool Delete(int Id, string userId)
         {
-            var delete = _toDoListRepository.Delete(Id);
+            var delete = _toDoListRepository.Delete(Id, userId);
             if (delete == true)
             {
                 return true;
@@ -66,9 +66,9 @@ namespace ToDoListAppAPI.Services
             return null;
         }
 
-        public ToDoListVM Get(int Id)
+        public ToDoListVM Get(int Id, string userId)
         {
-            var todolist = _toDoListRepository.Get(Id);
+            var todolist = _toDoListRepository.Get(Id, userId);
             if (todolist != null)
             {
                 return todolist;
@@ -86,9 +86,9 @@ namespace ToDoListAppAPI.Services
             return null;
         }
 
-        public bool UpdateStatus(int Id, ToDoListVM toDoListVM)
+        public bool UpdateStatus(int Id, string userId)
         {
-            var updatestatus = _toDoListRepository.UpdateStatus(Id, toDoListVM);
+            var updatestatus = _toDoListRepository.UpdateStatus(Id, userId);
             if (updatestatus == true)
             {
                 return true;

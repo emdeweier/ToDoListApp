@@ -53,9 +53,9 @@ namespace ToDoListApp.Controllers
         }
 
         // GET: ToDoLists/Details/5
-        public JsonResult Get(int id)
+        public JsonResult Get(int id, string userId)
         {
-            var cek = httpClient.GetAsync("ToDoLists/" + id).Result;
+            var cek = httpClient.GetAsync("ToDoLists/" + id + "/" + userId).Result;
             var read = cek.Content.ReadAsAsync<ToDoListVM>().Result;
             return Json(new { data = read });
         }
@@ -97,14 +97,14 @@ namespace ToDoListApp.Controllers
         }
 
         // GET: ToDoLists/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, string userId)
         {
-            var affectedRow = httpClient.DeleteAsync("ToDoLists/" + id).Result;
+            var affectedRow = httpClient.DeleteAsync("ToDoLists/" + id + "/" + userId).Result;
             return Json(new { data = affectedRow });
         }
 
         // POST: ToDoLists/UpdateStatus/5
-        public ActionResult UpdateStatus(int id, ToDoListVM toDoListVM)
+        public ActionResult UpdateStatus(int id, string userId, ToDoListVM toDoListVM)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace ToDoListApp.Controllers
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var ByteContent = new ByteArrayContent(buffer);
                 ByteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var update = httpClient.PutAsync("ToDoLists/Status/" + id, ByteContent).Result;
+                var update = httpClient.PutAsync("ToDoLists/Status/" + id + "/" + userId, ByteContent).Result;
                 return Json(new { data = update, update.StatusCode });
             }
             catch
