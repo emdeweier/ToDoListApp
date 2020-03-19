@@ -32,15 +32,30 @@ namespace ToDoListAppAPI.Controllers
         }
 
         // GET: api/ToDoLists
-        [HttpGet("Users/{iduser}")]
-        public IActionResult Get(string iduser)
+        //[HttpGet("Users/{iduser}")]
+        //public IActionResult Get(string iduser)
+        //{
+        //    var getall = _toDoListService.Get(iduser);
+        //    if (getall == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(getall);
+        //}
+
+        [HttpGet("Data")]
+        public async Task<ActionResult<ToDoListVM>> GetData(string uid, int status, string keyword, int page, int size)
         {
-            var getall = _toDoListService.Get(iduser);
-            if (getall == null)
+            if (keyword == null)
             {
-                return NotFound();
+                keyword = "";
             }
-            return Ok(getall);
+            var data = await _toDoListService.Get(uid, status, keyword, page, size);
+            if (data != null)
+            {
+                return Ok(data);
+            }
+            return BadRequest();
         }
 
         // GET: api/ToDoLists/5

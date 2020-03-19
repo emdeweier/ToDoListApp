@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ToDoListAppAPI.Services.Interfaces;
 using ToDoListAppData.Repositories.Interfaces;
 using ToDoListAppData.ViewModel;
@@ -76,14 +77,19 @@ namespace ToDoListAppAPI.Services
             return null;
         }
 
-        public IEnumerable<ToDoListVM> Get(string userId)
+        //public IEnumerable<ToDoListVM> Get(string userId)
+        //{
+        //    var todolist = _toDoListRepository.Get(userId);
+        //    if (todolist != null)
+        //    {
+        //        return todolist;
+        //    }
+        //    return null;
+        //}
+
+        public Task<ToDoListVM> Get(string userId, int status, string keyword, int page, int pageSize)
         {
-            var todolist = _toDoListRepository.Get(userId);
-            if (todolist != null)
-            {
-                return todolist;
-            }
-            return null;
+            return _toDoListRepository.Get(userId, status, keyword, page, pageSize);
         }
 
         public bool UpdateStatus(int Id, string userId)

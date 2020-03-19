@@ -43,6 +43,14 @@ namespace ToDoListAppAPI
             services.AddSingleton(connectionStrings);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddControllersWithViews()
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            //    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            //});
+            //.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IToDoListRepository, ToDoListRepository>();
             services.AddScoped<IToDoListService, ToDoListService>();

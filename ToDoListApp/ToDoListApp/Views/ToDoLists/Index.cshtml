@@ -14,6 +14,12 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <select id="status" style="width: 100px">
+                    <option value="2" selected>All</option>
+                    <option value="1">Done</option>
+                    <option value="0">Active</option>
+                </select>
+                <hr />
                 <table id="tdlTable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -22,35 +28,34 @@
                             <th width="15%">Date</th>
                             <th width="15%">Completed Date</th>
                             <th width="10%">Status</th>
-                            <th width="10%">Status</th>
                             <th width="10%">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var tdl in ViewBag.ToDoLists)
+                    @*<tbody>
+                @foreach (var tdl in ViewBag.ToDoLists)
+                {
+                    <tr @(tdl.Status == true ? "style=background:#959595;color:white" : "")>
+                        <td></td>
+                        <td>@tdl.Name</td>
+                        <td>@tdl.CreateDate.ToString("dd MMMM yyyy")</td>
+                        <td>@(tdl.CompletedDate != null ? tdl.CompletedDate.ToString("dd MMMM yyyy") : "On Progress")</td>
+                        <td>@(tdl.Status == false ? "Active" : "Completed")</td>
+                        <td>@(tdl.Status == false ? "Active" : "Completed")</td>
+                        @if (tdl.Status == false)
                         {
-                            <tr @(tdl.Status == true ? "style=background:#959595;color:white" : "")>
-                                <td></td>
-                                <td>@tdl.Name</td>
-                                <td>@tdl.CreateDate.ToString("dd MMMM yyyy")</td>
-                                <td>@(tdl.CompletedDate != null ? tdl.CompletedDate.ToString("dd MMMM yyyy") : "On Progress")</td>
-                                <td>@(tdl.Status == false ? "Active" : "Completed")</td>
-                                <td>@(tdl.Status == false ? "Active" : "Completed")</td>
-                                @if (tdl.Status == false)
-                                {
-                                    <td>
-                                        <a style="color:#ffc107;" onmouseover="this.style.cursor='pointer'" onclick=tdlGetById("@tdl.Id","@tdl.userId");><i class="fa fa-edit fa-lg"></i></a>&nbsp
-                                        <a style="color:#dc3545;" onmouseover="this.style.cursor='pointer'" onclick=tdlDelete("@tdl.Id","@tdl.userId");><i class="fa fa-trash fa-lg"></i></a>&nbsp
-                                        <a style="color:#28a745;" onmouseover="this.style.cursor='pointer'" onclick=tdlUpdateStatus("@tdl.Id","@tdl.userId");><i class="fa fa-check-circle fa-lg"></i></a>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>No Action</td>
-                                }
-                            </tr>
+                            <td>
+                                <a style="color:#ffc107;" onmouseover="this.style.cursor='pointer'" onclick=tdlGetById("@tdl.Id","@tdl.userId");><i class="fa fa-edit fa-lg"></i></a>&nbsp
+                                <a style="color:#dc3545;" onmouseover="this.style.cursor='pointer'" onclick=tdlDelete("@tdl.Id","@tdl.userId");><i class="fa fa-trash fa-lg"></i></a>&nbsp
+                                <a style="color:#28a745;" onmouseover="this.style.cursor='pointer'" onclick=tdlUpdateStatus("@tdl.Id","@tdl.userId");><i class="fa fa-check-circle fa-lg"></i></a>
+                            </td>
                         }
-                    </tbody>
+                        else
+                        {
+                            <td>No Action</td>
+                        }
+                    </tr>
+                }
+            </tbody>*@
                 </table>
             </div>
             <!-- /.card-body -->
@@ -102,6 +107,9 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
+        $("#status").select2({
+            theme: 'bootstrap4'
+        });
     </script>
     <!-- AdminLTE App -->
     <script src="~/js/adminlte.js"></script>

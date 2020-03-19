@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoListAppData.Model;
+using DataTables.AspNet.AspNetCore;
 
 namespace ToDoListApp
 {
@@ -35,6 +36,7 @@ namespace ToDoListApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.RegisterDataTables();
 
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(20);

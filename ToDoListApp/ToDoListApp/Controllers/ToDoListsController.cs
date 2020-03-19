@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using DataTables.AspNet.AspNetCore;
+using DataTables.AspNet.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -25,7 +27,7 @@ namespace ToDoListApp.Controllers
         {
             if (HttpContext.Session.GetString("IdUser") != null)
             {
-                ViewBag.ToDoLists = ToDoLists();
+                //ViewBag.ToDoLists = ToDoLists();
                 return View();
             }
             else
@@ -35,21 +37,49 @@ namespace ToDoListApp.Controllers
         }
 
         // GET : ToDoLists/Lists
-        public IList<ToDoListVM> ToDoLists()
+        //public IList<ToDoListVM> ToDoLists()
+        //{
+        //    var iduser = HttpContext.Session.GetString("IdUser");
+        //    IList<ToDoListVM> toDoLists = null;
+        //    var responseTask = httpClient.GetAsync("ToDoLists/Users/"+iduser);
+        //    responseTask.Wait();
+        //    var result = responseTask.Result;
+        //    if (result.IsSuccessStatusCode)
+        //    {
+        //        var readTask = result.Content.ReadAsAsync<IList<ToDoListVM>>();
+        //        readTask.Wait();
+        //        toDoLists = readTask.Result;
+        //    }
+
+        //    return toDoLists;
+        //}
+
+        public async Task<ToDoListVM> GetData(int status, string keyword, int size, int page)
         {
             var iduser = HttpContext.Session.GetString("IdUser");
-            IList<ToDoListVM> toDoLists = null;
-            var responseTask = httpClient.GetAsync("ToDoLists/Users/"+iduser);
-            responseTask.Wait();
-            var result = responseTask.Result;
-            if (result.IsSuccessStatusCode)
+            var url = "ToDoLists/Data?uid=" + iduser + "&status=" + status + "&keyword=" + keyword + "&page=" + page + "&size=" + size;
+            HttpResponseMessage response = await httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<IList<ToDoListVM>>();
-                readTask.Wait();
-                toDoLists = readTask.Result;
+                return await response.Content.ReadAsAsync<ToDoListVM>();
             }
+            return null;
+        }
 
-            return toDoLists;
+        [HttpGet("ToDoLists/Data/{status}")]
+        public IActionResult Data(IDataTablesRequest request, int status)
+        {
+            var pageSize = request.Length;
+            var pageNumber = request.Start / request.Length + 1;
+            string keyword = string.Empty;
+            if (request.Search.Value != null)
+            {
+                keyword = request.Search.Value;
+            }
+            var dataPage = GetData(status, keyword, pageSize, pageNumber).Result;
+            var filteredData = dataPage.filterLength;
+            var response = DataTablesResponse.Create(request, dataPage.length, filteredData, dataPage.data);
+            return new DataTablesJsonResult(response, true);
         }
 
         // GET: ToDoLists/Details/5

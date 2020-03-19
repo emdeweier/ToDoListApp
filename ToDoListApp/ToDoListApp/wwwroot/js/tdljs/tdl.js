@@ -1,52 +1,117 @@
-﻿$(function () {
-    var tdl = $("#tdlTable").DataTable({
-        "columnDefs": [
+﻿var tdl = null;
+
+//$(function () {
+//    var tdl = $("#tdlTable").DataTable({
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [0,6]
+//            },
+//            {
+//                "orderable": false,
+//                "targets": [1,2,3,4]
+//            },
+//            {
+//                "visible": false,
+//                "targets": [5]
+//            }
+//        ],
+//        "order": [[5, 'asc']],
+//        "initComplete": function () {
+//            this.api().columns().every(function () {
+//                var column = this;
+//                var text = ["No.", "To Do List Name", "Date", "Completed Date", "Status", "Status", "Action"];
+//                if (column.index() !== 0 && column.index() !== 6) {
+//                    var select = $('<select style="width: 100%"><option value="">' + text[column.index()] + '</option></select>')
+//                        .appendTo($(column.header()).empty())
+//                        .on('change', function () {
+//                            var val = $.fn.dataTable.util.escapeRegex(
+//                                $(this).val()
+//                            );
+//                            column
+//                                .search(val ? '^' + val + '$' : '', true, false)
+//                                .draw();
+//                        });
+//                    column.data().unique().sort().each(function (d, j) {
+//                        select.append('<option value="' + d + '">' + d + '</option>')
+//                    });
+//                    $('#filter' + column.index()).select2({
+//                        theme: 'bootstrap4'
+//                    })
+//                }
+//            });
+//        }
+//    });
+//    tdl.on('order.dt search.dt', function () {
+//        tdl.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+//            cell.innerHTML = i + 1 + ".";
+//        });
+//    }).draw();
+//});
+
+$(function () {
+    tdl = $("#tdlTable").DataTable({
+        "paging": true,
+        "serverSide": true,
+        "ajax": "/ToDoLists/Data/" + $('#status').val(),
+        "columns": [
             {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0,6]
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1 + ".";
+                }
+            },
+            { data: "name" },
+            {
+                data: "createDate",
+                render: function (data) {
+                    var createdate = moment(data).format('DD MMMM YYYY');
+                    return createdate;
+                }
             },
             {
-                "orderable": false,
-                "targets": [1,2,3,4]
+                data: "completedDate",
+                render: function (data) {
+                    if (data != null) {
+                        return moment(data).format('DD MMMM YYYY');
+                    }
+                    return "On Progress";
+                }
             },
             {
-                "visible": false,
-                "targets": [5]
+                data: "status",
+                render: function (data) {
+                    if (data) {
+                        return "Completed";
+                    }
+                    return "Active";
+                }
+            },
+            {
+                data: "status",
+                render: function (data, type, row) {
+                    if (data) {
+                        return "No Action";
+                    } else {
+                        return '<a style="color:#ffc107;" onclick=tdlGetById("' + row.id + '","' + row.userId +'");><i class="fa fa-edit fa-lg"></i></a>&nbsp' +
+                            '<a style="color:#dc3545;" onclick=tdlDelete("' + row.id + '","' + row.userId +'");><i class="fa fa-trash fa-lg"></i></a>&nbsp' +
+                            '<a style="color:#28a745;" onclick=tdlUpdateStatus("' + row.id + '","' + row.userId +'");><i class="fa fa-check-circle fa-lg"></i></a>'
+                    }
+                }
             }
         ],
-        "order": [[5, 'asc']],
-        "initComplete": function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var text = ["No.", "To Do List Name", "Date", "Completed Date", "Status", "Status", "Action"];
-                if (column.index() !== 0 && column.index() !== 6) {
-                    var select = $('<select style="width: 100%"><option value="">' + text[column.index()] + '</option></select>')
-                        .appendTo($(column.header()).empty())
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
-
-                            column
-                                .search(val ? '^' + val + '$' : '', true, false)
-                                .draw();
-                        });
-                    column.data().unique().sort().each(function (d, j) {
-                        select.append('<option value="' + d + '">' + d + '</option>')
-                    });
-                    $('#filter' + column.index()).select2({
-                        theme: 'bootstrap4'
-                    })
-                }
-            });
-        }
+        "columnDefs": [
+            {
+                "orderable": false,
+                "targets": [0, 1, 2, 3, 4, 5]
+            }
+        ]
     });
-    tdl.on('order.dt search.dt', function () {
-        tdl.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1 + ".";
-        });
-    }).draw();
+});
+
+$('#status').change(function () {
+    debugger;
+    tdl.ajax.url('/ToDoLists/Data/' + $('#status').val()).load();
 });
 
 // Clear Screen Input To Do List
@@ -214,27 +279,39 @@ function tdlUpdateStatus(id, userid) {
     var todolist = new Object();
     debugger
     todolist.Id = id;
-    $.ajax({
-        "url": "/ToDoLists/UpdateStatus/",
-        "type": "POST",
-        "dataType": "json",
-        "data": { Id: todolist.Id, userId: userid }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, update it!'
     }).then((result) => {
-        if (result.statusCode == 200) {
-            $("#tdlModal").modal("hide");
-            Swal.fire({
-                icon: 'success',
-                title: 'Your data has been updated',
-                text: 'Success!'
+        if (result.value) {
+            $.ajax({
+                "url": "/ToDoLists/UpdateStatus/",
+                "type": "POST",
+                "dataType": "json",
+                "data": { Id: todolist.Id, userId: userid }
             }).then((result) => {
-                location.reload();
-            });
-        }
-        else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Your data not updated',
-                text: 'Failed!'
+                if (result.statusCode == 200) {
+                    $("#tdlModal").modal("hide");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Your data has been updated',
+                        text: 'Success!'
+                    }).then((result) => {
+                        location.reload();
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Your data not updated',
+                        text: 'Failed!'
+                    })
+                }
             })
         }
     })

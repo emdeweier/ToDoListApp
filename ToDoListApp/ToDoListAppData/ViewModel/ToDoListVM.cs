@@ -16,5 +16,8 @@ namespace ToDoListAppData.ViewModel
         public Nullable<DateTimeOffset> UpdateDate { get; set; }
         public Nullable<DateTimeOffset> DeleteDate { get; set; }
         public Nullable<DateTimeOffset> CompletedDate { get; set; }
+        public IEnumerable<ToDoListVM> data { get; set; }
+        public int length { get; set; }
+        public int filterLength { get; set; }
     }
 }

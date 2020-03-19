@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,15 +97,35 @@ namespace ToDoListAppData.Repositories
             }
         }
 
-        public IEnumerable<ToDoListVM> Get(string userId)
+        //public IEnumerable<ToDoListVM> Get(string userId)
+        //{
+        //    using (var conn = new SqlConnection(_connectionStrings.Value))
+        //    {
+        //        var procGet = "SP_GetToDoLists";
+        //        param.Add("@paramId", null);
+        //        param.Add("@paramUserId", userId);
+        //        var getbyid = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
+        //        return getbyid;
+        //    }
+        //}
+
+        public async Task<ToDoListVM> Get(string uid, int status, string keyword, int page, int size)
         {
-            using (var conn = new SqlConnection(_connectionStrings.Value))
+            using (var sql = new SqlConnection(_connectionStrings.Value))
             {
-                var procGet = "SP_GetToDoLists";
-                param.Add("@paramId", null);
-                param.Add("@paramUserId", userId);
-                var getbyid = conn.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
-                return getbyid;
+                var procGet = "SP_ToDoListData";
+                param.Add("@paramPageNumber", page);
+                param.Add("@paramPageSize", size);
+                param.Add("@paramUserId", uid);
+                param.Add("@paramStatus", status);
+                param.Add("@paramKeyword", keyword);
+                param.Add("@length", DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@filterLength", DbType.Int32, direction: ParameterDirection.Output);
+                var result = new ToDoListVM();
+                result.data = await sql.QueryAsync<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
+                result.length = param.Get<int>("@length");
+                result.filterLength = param.Get<int>("@filterLength");
+                return result;
             }
         }
 

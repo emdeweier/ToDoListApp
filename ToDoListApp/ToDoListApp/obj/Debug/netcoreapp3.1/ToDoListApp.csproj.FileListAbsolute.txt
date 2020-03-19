@@ -11,6 +11,8 @@ B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\ToDoListApp.pdb
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\ToDoListApp.Views.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\ToDoListApp.Views.pdb
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Dapper.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\DataTables.AspNet.AspNetCore.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\DataTables.AspNet.Core.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -19,6 +21,8 @@ B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Host.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -28,6 +32,7 @@ B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysi
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
@@ -40,13 +45,16 @@ B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Globalization.CultureInfoCache.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
 B:\Project\ToDoListApp\ToDoListApp\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
