@@ -12,6 +12,7 @@ namespace ToDoListAppData.Context
     public class MyContext : IdentityDbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
         public MyContext(DbContextOptions<MyContext> options) : base(options) { }
         public MyContext()

@@ -61,6 +61,16 @@ $(function () {
                     return meta.row + meta.settings._iDisplayStart + 1 + ".";
                 }
             },
+            {
+                data: "status",
+                render: function (data, type, row) {
+                    if (data) {
+                        return '<center><i class="fa fa-times-circle fa-lg"></i></center>';
+                    } else {
+                        return '<center><a style="color:#28a745; cursor:pointer;" onclick=tdlUpdateStatus("' + row.id + '","' + row.userId + '");><i class="fa fa-check-circle fa-lg"></i></a></center>'
+                    }
+                }
+            },
             { data: "name" },
             {
                 data: "createDate",
@@ -89,13 +99,22 @@ $(function () {
             },
             {
                 data: "status",
+                visible: false,
+                render: function (data) {
+                    if (data) {
+                        return "Completed";
+                    }
+                    return "Active";
+                }
+            },
+            {
+                data: "status",
                 render: function (data, type, row) {
                     if (data) {
                         return "No Action";
                     } else {
-                        return '<a style="color:#ffc107;" onclick=tdlGetById("' + row.id + '","' + row.userId +'");><i class="fa fa-edit fa-lg"></i></a>&nbsp' +
-                            '<a style="color:#dc3545;" onclick=tdlDelete("' + row.id + '","' + row.userId +'");><i class="fa fa-trash fa-lg"></i></a>&nbsp' +
-                            '<a style="color:#28a745;" onclick=tdlUpdateStatus("' + row.id + '","' + row.userId +'");><i class="fa fa-check-circle fa-lg"></i></a>'
+                        return '<a style="color:#ffc107; cursor:pointer;" onclick=tdlGetById("' + row.id + '","' + row.userId +'");><i class="fa fa-edit fa-lg"></i></a>&nbsp' +
+                            '<a style="color:#dc3545; cursor:pointer;" onclick=tdlDelete("' + row.id + '","' + row.userId +'");><i class="fa fa-trash fa-lg"></i></a>&nbsp'
                     }
                 }
             }
@@ -103,9 +122,17 @@ $(function () {
         "columnDefs": [
             {
                 "orderable": false,
-                "targets": [0, 1, 2, 3, 4, 5]
+                "targets": [0, 1, 2, 3, 4, 5, 7]
             }
-        ]
+        ],
+        "order": [[6, 'asc']],
+        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            debugger
+            if (aData.status == 1) {
+                $('td', nRow).css('background-color', '#959595');
+                $('td', nRow).css('color', 'white');
+            }
+        }
     });
 });
 
@@ -129,7 +156,7 @@ function tdlValidation() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Please Fill To Do List'
+            text: 'Please Fill Name'
         })
     }
     else if ($("#tdlIdText").val() == "" || $("#tdlIdText").val() == " ") {
@@ -286,7 +313,7 @@ function tdlUpdateStatus(id, userid) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, update it!'
+        confirmButtonText: 'Yes, complete it!'
     }).then((result) => {
         if (result.value) {
             $.ajax({
@@ -299,7 +326,7 @@ function tdlUpdateStatus(id, userid) {
                     $("#tdlModal").modal("hide");
                     Swal.fire({
                         icon: 'success',
-                        title: 'Your data has been updated',
+                        title: 'Your to do list has been completed',
                         text: 'Success!'
                     }).then((result) => {
                         location.reload();

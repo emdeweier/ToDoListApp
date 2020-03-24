@@ -25,7 +25,7 @@ function uLogin() {
         }).then((result) => {
             debugger;
             if (result.statusCode == 200) {
-                window.location.href = '/ToDoLists/'
+                window.location.href = '/'
             }
             else {
                 $("#login-alert").removeAttr('hidden');

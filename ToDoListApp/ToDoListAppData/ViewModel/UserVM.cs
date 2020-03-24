@@ -13,6 +13,7 @@ namespace ToDoListAppData.ViewModel
         public bool LockedStatus { get; set; }
         public string PIN { get; set; }
         public bool IsDelete { get; set; }
+        public string RoleName { get; set; }
         public DateTimeOffset JoinDate { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public Nullable<DateTimeOffset> UpdateDate { get; set; }

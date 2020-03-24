@@ -20,13 +20,14 @@ namespace ToDoListApp.Controllers
         public ToDoListsController()
         {
             httpClient.BaseAddress = new Uri("https://localhost:44323/api/");
-            httpClient.DefaultRequestHeaders.Accept.Clear();
+            //httpClient.DefaultRequestHeaders.Accept.Clear();
         }
         // GET: ToDoLists
         public ActionResult Index()
         {
-            if (HttpContext.Session.GetString("IdUser") != null)
+            if (HttpContext.Session.GetString("Token") != null)
             {
+                httpClient.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("Token"));
                 //ViewBag.ToDoLists = ToDoLists();
                 return View();
             }
@@ -56,6 +57,7 @@ namespace ToDoListApp.Controllers
 
         public async Task<ToDoListVM> GetData(int status, string keyword, int size, int page)
         {
+            httpClient.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("Token"));
             var iduser = HttpContext.Session.GetString("IdUser");
             var url = "ToDoLists/Data?uid=" + iduser + "&status=" + status + "&keyword=" + keyword + "&page=" + page + "&size=" + size;
             HttpResponseMessage response = await httpClient.GetAsync(url);
@@ -138,6 +140,7 @@ namespace ToDoListApp.Controllers
         {
             try
             {
+                var getdata = Get(id, userId);
                 var myContent = JsonConvert.SerializeObject(toDoListVM);
                 var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                 var ByteContent = new ByteArrayContent(buffer);

@@ -3,7 +3,6 @@ B:\Project\ToDoListApp\ToDoListAppData\bin\Debug\netcoreapp3.1\ToDoListAppData.r
 B:\Project\ToDoListApp\ToDoListAppData\bin\Debug\netcoreapp3.1\ToDoListAppData.runtimeconfig.dev.json
 B:\Project\ToDoListApp\ToDoListAppData\bin\Debug\netcoreapp3.1\ToDoListAppData.dll
 B:\Project\ToDoListApp\ToDoListAppData\bin\Debug\netcoreapp3.1\ToDoListAppData.pdb
-B:\Project\ToDoListApp\ToDoListAppData\obj\Debug\netcoreapp3.1\ToDoListAppData.csprojAssemblyReference.cache
 B:\Project\ToDoListApp\ToDoListAppData\obj\Debug\netcoreapp3.1\ToDoListAppData.AssemblyInfoInputs.cache
 B:\Project\ToDoListApp\ToDoListAppData\obj\Debug\netcoreapp3.1\ToDoListAppData.AssemblyInfo.cs
 B:\Project\ToDoListApp\ToDoListAppData\obj\Debug\netcoreapp3.1\ToDoListAppData.dll

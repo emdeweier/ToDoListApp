@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-ToDoListApp-7007D08E-28CF-480A-831D-5E0BEABD5F85</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200323081138_addrolemodel.cs" />
+    <Compile Remove="Data\Migrations\20200323081138_addrolemodel.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="DataTables.AspNet.AspNetCore" Version="2.0.2" />

@@ -172,3 +172,4 @@ B:\Project\ToDoListApp\ToDoListApp\obj\Debug\netcoreapp3.1\ToDoListApp.Views.pdb
 B:\Project\ToDoListApp\ToDoListApp\obj\Debug\netcoreapp3.1\ToDoListApp.csproj.CopyComplete
 B:\Project\ToDoListApp\ToDoListApp\obj\Debug\netcoreapp3.1\ToDoListApp.dll
 B:\Project\ToDoListApp\ToDoListApp\obj\Debug\netcoreapp3.1\ToDoListApp.pdb
+B:\Project\ToDoListApp\ToDoListApp\obj\Debug\netcoreapp3.1\Razor\Views\Users\Register.cshtml.g.cs

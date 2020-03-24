@@ -23,13 +23,21 @@ namespace ToDoListApp.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View();
+            var username = HttpContext.Session.GetString("Token");
+            if (username == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "ToDoLists");
+            }
         }
 
         [Route("Logout")]
         public ActionResult Logout()
         {
-            var username = HttpContext.Session.GetString("Username");
+            var username = HttpContext.Session.GetString("Token");
             if (username == null)
             {
                 return RedirectToAction("", "Users");
@@ -39,6 +47,7 @@ namespace ToDoListApp.Controllers
                 HttpContext.Session.Remove("IdUser");
                 HttpContext.Session.Remove("Username");
                 HttpContext.Session.Remove("Name");
+                HttpContext.Session.Remove("Token");
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -54,11 +63,12 @@ namespace ToDoListApp.Controllers
             if (affectedRow.IsSuccessStatusCode)
             {
                 var readTask = affectedRow.Content.ReadAsStringAsync().Result.Replace("\"", "").Split("...");
-                //var token = "Bearer " + readTask[0];
-                var username = readTask[0];
-                var iduser = readTask[1];
-                var name = readTask[2];
+                var token = "Bearer " + readTask[0];
+                var username = readTask[1];
+                var iduser = readTask[2];
+                var name = readTask[3];
                 HttpContext.Session.SetString("IdUser", iduser);
+                HttpContext.Session.SetString("Token", token);
                 var cek = httpClient.GetAsync("Get/" + iduser).Result;
                 var read = cek.Content.ReadAsStringAsync().Result;
                 //userVM.Id = Convert.ToInt16(iduser);
@@ -76,7 +86,7 @@ namespace ToDoListApp.Controllers
         }
 
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
             return View();
         }
