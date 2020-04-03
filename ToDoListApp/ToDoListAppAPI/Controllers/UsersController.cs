@@ -85,18 +85,34 @@ namespace ToDoListAppAPI.Controllers
                     user.JoinDate = DateTimeOffset.Now.ToLocalTime();
                     user.CreateDate = user.JoinDate;
                     user.SecurityStamp = _userManager.GetSecurityStampAsync(user).ToString();
-                    var result = _userManager.CreateAsync(user, model.PasswordHash);
-                    if (result.Result.Succeeded)
+                    var checkuser = _userManager.FindByNameAsync(user.UserName).Result;
+                    if (checkuser != null)
                     {
-                        var checkrole = _roleManager.RoleExistsAsync("User");
-                        if(checkrole.Result == true)
+                        return StatusCode(1);
+                    }
+                    else
+                    {
+                        var checkemail = _userManager.FindByEmailAsync(user.Email).Result;
+                        if (checkemail != null)
                         {
-                            var assignrole = _userManager.AddToRoleAsync(user, "User");
-                            if(assignrole.Result != null)
+                            return StatusCode(2);
+                        }
+                        else
+                        {
+                            var result = _userManager.CreateAsync(user, model.PasswordHash);
+                            if (result.Result.Succeeded)
                             {
-                                return Ok("Register Success");
+                                var checkrole = _roleManager.RoleExistsAsync("User");
+                                if (checkrole.Result == true)
+                                {
+                                    var assignrole = _userManager.AddToRoleAsync(user, "User");
+                                    if (assignrole.Result != null)
+                                    {
+                                        return StatusCode(200);
+                                    }
+                                    return StatusCode(3);
+                                }
                             }
-                            return BadRequest("Register Failed");
                         }
                     }
                 }

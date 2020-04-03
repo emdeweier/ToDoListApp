@@ -27,6 +27,20 @@ using ToDoListApp.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 1 "B:\Project\ToDoListApp\ToDoListApp\Views\Layout\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "B:\Project\ToDoListApp\ToDoListApp\Views\Layout\_ViewImports.cshtml"
+using ToDoListApp.Areas.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "B:\Project\ToDoListApp\ToDoListApp\Views\Layout\_Sidebar.cshtml"
 using Microsoft.AspNetCore.Http;
 
@@ -35,6 +49,7 @@ using Microsoft.AspNetCore.Http;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ab7d0467c77ceb690bd215a9d94783daa8318e0e", @"/Views/Layout/_Sidebar.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"52f945efe976b1d64c78b43e826c929a1c767a43", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dddb63ec47b24abb0441914f2fd9cf9958718a7d", @"/Views/Layout/_ViewImports.cshtml")]
     public class Views_Layout__Sidebar : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/images/adminlte/user2-160x160.jpg"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -65,7 +80,7 @@ using Microsoft.AspNetCore.Http;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<div class=\"sidebar\">\r\n    <!-- Sidebar user panel (optional) -->\r\n    <div class=\"user-panel mt-3 pb-3 mb-3 d-flex\">\r\n        <div class=\"image\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ab7d0467c77ceb690bd215a9d94783daa8318e0e4488", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ab7d0467c77ceb690bd215a9d94783daa8318e0e5028", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -82,6 +82,23 @@ namespace ToDoListAppData.Repositories
             return getbyid;
         }
 
+        public UserVM GetDataUser(string userId)
+        {
+            var procGet = "SP_GetDataUser";
+            param.Add("@paramUserId", userId);
+            var getbyuser = _connectionStrings.Connections.Query<UserVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            return getbyuser;
+        }
+
+        public IEnumerable<ToDoListVM> GetToDoLists(string userId)
+        {
+            var procGet = "SP_GetToDoLists";
+            param.Add("@paramId", null);
+            param.Add("@paramUserId", userId);
+            var get = _connectionStrings.Connections.Query<ToDoListVM>(procGet, param, commandType: System.Data.CommandType.StoredProcedure);
+            return get;
+        }
+
         //public IEnumerable<ToDoListVM> Get(string userId)
         //{
         //    using (var conn = new SqlConnection(_connectionStrings.Value))

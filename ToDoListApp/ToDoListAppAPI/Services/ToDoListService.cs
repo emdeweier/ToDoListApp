@@ -92,6 +92,26 @@ namespace ToDoListAppAPI.Services
             return _toDoListRepository.Get(userId, status, keyword, page, pageSize);
         }
 
+        public UserVM GetDataUser(string userId)
+        {
+            var user = _toDoListRepository.GetDataUser(userId);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
+
+        public IEnumerable<ToDoListVM> GetToDoLists(string userId)
+        {
+            var todolist = _toDoListRepository.GetToDoLists(userId);
+            if (todolist != null)
+            {
+                return todolist;
+            }
+            return null;
+        }
+
         public bool UpdateStatus(int Id, string userId)
         {
             var updatestatus = _toDoListRepository.UpdateStatus(Id, userId);

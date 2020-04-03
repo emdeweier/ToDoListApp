@@ -73,6 +73,30 @@ namespace ToDoListAppAPI.Controllers
             return Ok(getbyid);
         }
 
+        // GET: api/ToDoLists/5
+        [HttpGet("GetDataUser/{userId}")]
+        public IActionResult GetDataUser(string userId)
+        {
+            var getbyuser = _toDoListService.GetDataUser(userId);
+            if (getbyuser == null)
+            {
+                return NotFound();
+            }
+            return Ok(getbyuser);
+        }
+
+        // GET: api/ToDoLists/5
+        [HttpGet("GetToDoLists/{userId}")]
+        public IActionResult GetToDoLists(string userId)
+        {
+            var getbyuser = _toDoListService.GetToDoLists(userId);
+            if (getbyuser == null)
+            {
+                return NotFound();
+            }
+            return Ok(getbyuser);
+        }
+
         // POST: api/ToDoLists
         [HttpPost]
         public ActionResult Post(ToDoListVM toDoListVM)

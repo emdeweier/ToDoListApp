@@ -75,15 +75,16 @@ $(function () {
             {
                 data: "createDate",
                 render: function (data) {
-                    var createdate = moment(data).format('DD MMMM YYYY');
+                    debugger;
+                    var createdate = moment.utc(data).format('DD MMMM YYYY');
                     return createdate;
                 }
             },
             {
                 data: "completedDate",
                 render: function (data) {
-                    if (data != null) {
-                        return moment(data).format('DD MMMM YYYY');
+                    if (data != null && moment.utc(data).format('DD MMMM YYYY') != '01 January 0001') {
+                        return moment.utc(data).format('DD MMMM YYYY');
                     }
                     return "On Progress";
                 }
@@ -140,6 +141,18 @@ $('#status').change(function () {
     debugger;
     tdl.ajax.url('/ToDoLists/Data/' + $('#status').val()).load();
 });
+
+// Export PDF
+function tdlExportPdf(userId) {
+    debugger
+    window.location.href = 'ToDoLists/Report/' + userId;
+}
+
+// Export Excel
+function tdlExportExcel(userId) {
+    debugger
+    window.location.href = 'ToDoLists/Excel/' + userId;
+}
 
 // Clear Screen Input To Do List
 function tdlClearScreen() {

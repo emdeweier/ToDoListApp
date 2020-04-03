@@ -60,12 +60,7 @@ namespace ToDoListAppAPI
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleService, RoleService>();
 
-            services.AddIdentity<User, Role>(options =>
-            {
-                options.Lockout.AllowedForNewUsers = true;
-                options.Lockout.MaxFailedAccessAttempts = 3;
-
-            })
+            services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<MyContext>()
                 .AddDefaultTokenProviders();
             var lockoutOptions = new LockoutOptions()

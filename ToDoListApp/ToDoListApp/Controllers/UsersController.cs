@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ToDoListAppData.ViewModel;
@@ -13,9 +14,15 @@ namespace ToDoListApp.Controllers
 {
     public class UsersController : Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
         readonly HttpClient httpClient = new HttpClient();
-        public UsersController()
+        public UsersController(SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             httpClient.BaseAddress = new Uri("https://localhost:44323/api/");
             httpClient.DefaultRequestHeaders.Accept.Clear();
         }
@@ -92,20 +99,14 @@ namespace ToDoListApp.Controllers
         }
 
         // POST: Users/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public JsonResult Create(UserVM userVM)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var myContent = JsonConvert.SerializeObject(userVM);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = httpClient.PostAsync("Users", byteContent).Result;
+            return Json(new { data = result, result.StatusCode });
         }
 
         // GET: Users/Edit/5

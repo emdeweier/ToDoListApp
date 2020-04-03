@@ -8,6 +8,8 @@ namespace ToDoListAppData.Repositories.Interfaces
     {
         IEnumerable<ToDoListVM> Get();
         ToDoListVM Get(int Id, string userId);
+        UserVM GetDataUser(string userId);
+        IEnumerable<ToDoListVM> GetToDoLists(string userId);
         //IEnumerable<ToDoListVM> Get(string userId);
         Task<ToDoListVM> Get(string userId, int status, string keyword, int page, int pageSize);
         int Add(ToDoListVM toDoListVM);

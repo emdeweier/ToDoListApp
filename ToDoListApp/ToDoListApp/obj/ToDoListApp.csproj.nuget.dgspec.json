@@ -149,6 +149,10 @@
               "target": "Package",
               "version": "[2.0.2, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"
@@ -176,6 +180,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "iTextSharp": {
+              "target": "Package",
+              "version": "[5.5.13.1, )"
             }
           },
           "imports": [

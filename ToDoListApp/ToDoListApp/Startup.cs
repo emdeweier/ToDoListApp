@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoListAppData.Model;
 using DataTables.AspNet.AspNetCore;
+using ToDoListAppData.Context;
 
 namespace ToDoListApp
 {
@@ -29,18 +30,17 @@ namespace ToDoListApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<MyContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("TDLConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<MyContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.RegisterDataTables();
 
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
-            });
+            services.AddSession();
 
             //services.AddIdentity<User, IdentityRole>(options =>
             //{
@@ -85,7 +85,8 @@ namespace ToDoListApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ToDoLists}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    //pattern: "{controller=ToDoLists}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
